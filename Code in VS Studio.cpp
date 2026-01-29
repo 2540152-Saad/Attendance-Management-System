@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    int id;
+    string name;
+    int present;
+    int total;
+};
+
+int main() {
+    Student s[100];
+    int count = 0;
+    int choice;
+
+    do {
+        cout << "\n1. Add Student\n";
+        cout << "2. Mark Attendance\n";
+        cout << "3. View Attendance\n";
+        cout << "4. Exit\n";
+        cout << "Enter Choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            cout << "Enter Student ID: ";
+            cin >> s[count].id;
+            cout << "Enter Student Name: ";
+            cin >> s[count].name;
+            s[count].present = 0;
+            s[count].total = 0;
+            count++;
+        }
+
+        else if (choice == 2) {
+            int id;
+            char status;
+            cout << "Enter Student ID: ";
+            cin >> id;
+
+            for (int i = 0; i < count; i++) {
+                if (s[i].id == id) {
+                    cout << "Enter P for Present or A for Absent: ";
+                    cin >> status;
+                    s[i].total++;
+                    if (status == 'P' || status == 'p') {
+                        s[i].present++;
+                    }
+                }
+            }
+        }
+
+        else if (choice == 3) {
+            for (int i = 0; i < count; i++) {
+                cout << "ID: " << s[i].id << endl;
+                cout << "Name: " << s[i].name << endl;
+                cout << "Present: " << s[i].present << endl;
+                cout << "Total Classes: " << s[i].total << endl;
+                cout << "----------------------" << endl;
+            }
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
